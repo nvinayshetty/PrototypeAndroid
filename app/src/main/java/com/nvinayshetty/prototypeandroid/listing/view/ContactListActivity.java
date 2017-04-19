@@ -1,18 +1,21 @@
-package com.nvinayshetty.prototypeandroid;
+package com.nvinayshetty.prototypeandroid.listing.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
+import com.nvinayshetty.prototypeandroid.R;
 import com.nvinayshetty.prototypeandroid.listing.model.Contact;
-import com.nvinayshetty.prototypeandroid.listing.view.ContactsListView;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ContactListActivity extends AppCompatActivity implements ContactsListView{
+
 
     @BindView(R.id.contacts_recycler_view)
     RecyclerView contactsRecyclerView;
