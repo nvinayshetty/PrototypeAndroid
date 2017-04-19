@@ -2,6 +2,7 @@ package com.nvinayshetty.prototypeandroid.listing.model;
 
 import java.util.List;
 
+import retrofit2.Call;
 import retrofit2.http.GET;
 
 /**
@@ -10,5 +11,5 @@ import retrofit2.http.GET;
 
 public interface ContactListService {
     @GET("contacts")
-    List<Contact> getContacts();
+    Call<List<Contact>> getContacts();
 }

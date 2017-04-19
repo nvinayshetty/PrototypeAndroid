@@ -12,4 +12,5 @@ public interface ContactsListView {
     void showProgress();
     List<Contact> showContacts(List<Contact> contacts);
     void hideProgress();
+    void displayNotification(String message);
 }
