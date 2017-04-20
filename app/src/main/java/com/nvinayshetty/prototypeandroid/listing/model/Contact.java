@@ -81,4 +81,7 @@ public class Contact{
     }
 
 
+    public String getInitials() {
+         return String.valueOf(firstName.charAt(0));
+    }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PrototypeAndroid</string>
+    <string name="contact_icon">Contact Icon</string>
 </resources>

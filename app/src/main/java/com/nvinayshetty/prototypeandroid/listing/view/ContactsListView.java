@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ContactsListView {
     void showProgress();
-    List<Contact> showContacts(List<Contact> contacts);
+    void showContacts(List<Contact> contacts);
     void hideProgress();
     void displayNotification(String message);
 }

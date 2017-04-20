@@ -2,6 +2,7 @@ package com.nvinayshetty.prototypeandroid.listing.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 
 import com.nvinayshetty.prototypeandroid.R;
@@ -23,6 +24,7 @@ public class ContactListActivity extends AppCompatActivity implements ContactsLi
     ContactListPresenter contactListPresenter;
     @BindView(R.id.contacts_recycler_view)
     RecyclerView contactsRecyclerView;
+    private ContactListAdapter contactListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class ContactListActivity extends AppCompatActivity implements ContactsLi
         ((App)getApplication()).getAppComponent()
                 .plus(new ContactListModule(this))
                 .inject(this);
+        contactListAdapter=new ContactListAdapter();
+        contactsRecyclerView.setAdapter(contactListAdapter);
+        contactsRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         contactListPresenter.getContactsList();
 
     }
@@ -42,8 +47,8 @@ public class ContactListActivity extends AppCompatActivity implements ContactsLi
     }
 
     @Override
-    public List<Contact> showContacts(List<Contact> contacts) {
-        return null;
+    public void showContacts(List<Contact> contacts) {
+        contactListAdapter.addAllAndNotify(contacts);
     }
 
     @Override

@@ -20,14 +20,14 @@ public class AppModule {
     @Provides
     @Singleton
     @Named("BASE_URL")
-    public String provideBaseUrl() {
+    public static String provideBaseUrl() {
         return Constants.BASE_URL;
     }
 
 
     @Provides
     @Singleton
-    public OkHttpClient provideLoggingCapableHttpClient(Context app) {
+    public static OkHttpClient provideLoggingCapableHttpClient(Context app) {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
@@ -39,7 +39,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public Retrofit provideRetrofit(OkHttpClient okHttpClient, @Named("BASE_URL") String baseUrl) {
+    public static Retrofit provideRetrofit(OkHttpClient okHttpClient, @Named("BASE_URL") String baseUrl) {
         return new Retrofit
                 .Builder()
                 .baseUrl(baseUrl)

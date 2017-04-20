@@ -30,7 +30,7 @@ public class ContactListModule {
     }
 
     @Provides
-    public ContactListPresenter provideContactListPresenter(ContactsListView contactsListView,ContactListService contactListService){
+    public static ContactListPresenter provideContactListPresenter(ContactsListView contactsListView,ContactListService contactListService){
         return new ContactListPresenter(contactsListView,contactListService);
     }
 }
