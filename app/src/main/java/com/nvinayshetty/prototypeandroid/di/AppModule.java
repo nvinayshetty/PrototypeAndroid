@@ -19,9 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppModule {
     @Provides
     @Singleton
-    @Named("BASE_URL")
+    @Named("BaseUrl")
     public static String provideBaseUrl() {
-        return Constants.BASE_URL;
+        return Urls.BASE_URL;
     }
 
 
@@ -39,7 +39,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public static Retrofit provideRetrofit(OkHttpClient okHttpClient, @Named("BASE_URL") String baseUrl) {
+    public static Retrofit provideRetrofit(OkHttpClient okHttpClient, @Named("BaseUrl") String baseUrl) {
         return new Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
