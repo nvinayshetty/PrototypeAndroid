@@ -40,9 +40,9 @@ public class AppModule {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
-                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(new ErrorHandlingInterceptor(context))
                 .addInterceptor(new PrototypingInterceptor(context))
+                .addInterceptor(httpLoggingInterceptor)
                 .build();
 
 
@@ -60,11 +60,11 @@ public class AppModule {
     }
     @Singleton
     @Provides
-    @Named("MOCK")
     public MockRetrofit provideMockRetrofit(Retrofit retrofit){
         final NetworkBehavior behavior = NetworkBehavior.create();
-        behavior.setErrorPercent(2);
+        behavior.setErrorPercent(50);
         behavior.setDelay(4, TimeUnit.SECONDS);
+        behavior.setVariancePercent(10);
         final ExecutorService executor = Executors.newSingleThreadExecutor();
         final MockRetrofit mockRetrofit = new MockRetrofit.Builder(retrofit).backgroundExecutor(executor).networkBehavior(behavior).build();
         return mockRetrofit;
