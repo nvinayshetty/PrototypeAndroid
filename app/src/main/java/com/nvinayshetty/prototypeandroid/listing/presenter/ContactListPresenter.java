@@ -15,16 +15,16 @@ import java.util.List;
 
 public class ContactListPresenter {
     private ContactsListView contactsListView;
-    private ContactListNetworkService contactListNetworkService;
+    private ContactListNetworkModel contactListNetworkModel;
 
-    public ContactListPresenter(ContactsListView contactsListView,  ContactListNetworkService contactListNetworkService) {
+    public ContactListPresenter(ContactsListView contactsListView,  ContactListNetworkModel contactListNetworkModel) {
         this.contactsListView = contactsListView;
-        this.contactListNetworkService = contactListNetworkService;
+        this.contactListNetworkModel = contactListNetworkModel;
     }
 
     public void getContactsList(){
         contactsListView.showProgress();
-        contactListNetworkService.getContactsList(new NetworkCallBack<List<Contact>>() {
+        contactListNetworkModel.getContactsList(new NetworkCallBack<List<Contact>>() {
 
             @Override
             public void onSuccess(List<Contact> response) {

@@ -12,10 +12,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ContactListNetworkService {
+public class ContactListNetworkModel {
  private ContactListService contactListService;
 
-    public ContactListNetworkService(ContactListService contactListService) {
+    public ContactListNetworkModel(ContactListService contactListService) {
         this.contactListService = contactListService;
     }
 

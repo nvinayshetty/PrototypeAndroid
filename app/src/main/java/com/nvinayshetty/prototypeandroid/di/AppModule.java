@@ -3,7 +3,13 @@ package com.nvinayshetty.prototypeandroid.di;
 import android.content.Context;
 
 import com.nvinayshetty.prototypeandroid.common.ErrorHandlingInterceptor;
+import com.nvinayshetty.prototypeandroid.mock.MockRetrofit;
+import com.nvinayshetty.prototypeandroid.mock.NetworkBehavior;
 import com.nvinayshetty.prototypeandroid.prototype.PrototypingInterceptor;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -51,6 +57,17 @@ public class AppModule {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+    @Singleton
+    @Provides
+    @Named("MOCK")
+    public MockRetrofit provideMockRetrofit(Retrofit retrofit){
+        final NetworkBehavior behavior = NetworkBehavior.create();
+        behavior.setErrorPercent(2);
+        behavior.setDelay(4, TimeUnit.SECONDS);
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        final MockRetrofit mockRetrofit = new MockRetrofit.Builder(retrofit).backgroundExecutor(executor).networkBehavior(behavior).build();
+        return mockRetrofit;
     }
 
 }
