@@ -3,6 +3,7 @@ package com.nvinayshetty.prototypeandroid.di;
 import android.content.Context;
 
 import com.nvinayshetty.prototypeandroid.common.ErrorHandlingInterceptor;
+import com.nvinayshetty.prototypeandroid.prototype.PrototypingInterceptor;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -33,8 +34,9 @@ public class AppModule {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
-                .addInterceptor(new ErrorHandlingInterceptor(context))
                 .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(new ErrorHandlingInterceptor(context))
+                .addInterceptor(new PrototypingInterceptor(context))
                 .build();
 
 
