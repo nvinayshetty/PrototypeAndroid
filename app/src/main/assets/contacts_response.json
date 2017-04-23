@@ -1,0 +1,79 @@
+[{
+  "id": 19,
+  "first_name": "vinay",
+  "last_name": "mathur",
+  "favorite": true
+},
+  {
+    "id": 5,
+    "first_name": "amit",
+    "last_name": "tiwari",
+    "favorite": true
+  },
+  {
+    "id": 97,
+    "first_name": "Vijay",
+    "last_name": "Name",
+    "favorite": true
+  },
+  {
+    "id": 3,
+    "first_name": "Vijay",
+    "last_name": "Mohan",
+    "favorite": true
+  },
+  {
+    "id": 18,
+    "first_name": "Vivek",
+    "last_name": "tytttt",
+    "favorite": true
+  },
+  {
+    "id": 30,
+    "first_name": "Sanvi",
+    "last_name": "ganesh",
+    "favorite": true
+  },
+  {
+    "id": 44,
+    "first_name": "Alex",
+    "last_name": "singh",
+    "favorite": true
+  },
+  {
+    "id": 2,
+    "first_name": "SRK",
+    "last_name": "Khan",
+    "favorite": true
+  },
+  {
+    "id": 23,
+    "first_name": "Aakashq",
+    "last_name": "Singhq",
+    "favorite": false
+  },
+  {
+    "id": 38,
+    "first_name": "Abhi",
+    "last_name": "Shah",
+    "favorite": false
+  },
+  {
+    "id": 6,
+    "first_name": "Ajax",
+    "last_name": "Souter",
+    "favorite": false
+  },
+  {
+    "id": 26,
+    "first_name": "Ajax",
+    "last_name": "Souter",
+    "favorite": false
+  },
+  {
+    "id": 9,
+    "first_name": "Ajax",
+    "last_name": "Souter",
+    "favorite": false
+  }
+]

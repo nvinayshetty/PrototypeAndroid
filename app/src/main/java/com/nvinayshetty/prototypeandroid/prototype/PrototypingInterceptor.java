@@ -43,7 +43,7 @@ public class PrototypingInterceptor implements Interceptor {
         {
             case "http://10.42.0.1:3000/contacts":{
                 final ResponseBody responseBody = ResponseBody
-                                                    .create(MediaType.parse("aplication/json"), readFromFile("response.json"));
+                                                    .create(MediaType.parse("aplication/json"), readFromFile("contacts_response.json"));
                 final Response response = new Response
                                             .Builder()
                                             .body(responseBody)

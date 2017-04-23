@@ -12,12 +12,6 @@ public class Contact{
     private String firstName;
     @SerializedName("last_name")
     private String lastName;
-    @SerializedName("email")
-    private String email;
-    @SerializedName("phone_number")
-    private String phoneNumber;
-    @SerializedName("profile_pic")
-    private String profilePic;
     @SerializedName("favorite")
     private boolean isFavorite;
 
@@ -37,17 +31,6 @@ public class Contact{
         this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
@@ -64,22 +47,10 @@ public class Contact{
     public String getFullName(){
         return firstName+" "+lastName;
     }
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
 
     public boolean isFavorite() {
         return isFavorite;
     }
-
 
     public String getInitials() {
          return String.valueOf(firstName.charAt(0));
