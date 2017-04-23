@@ -2,6 +2,8 @@ package com.nvinayshetty.prototypeandroid.di;
 
 import android.content.Context;
 
+import com.nvinayshetty.prototypeandroid.common.ErrorHandlingInterceptor;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -27,10 +29,11 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public static OkHttpClient provideLoggingCapableHttpClient(Context app) {
+    public static OkHttpClient provideLoggingCapableHttpClient(Context context) {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
+                .addInterceptor(new ErrorHandlingInterceptor(context))
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
 

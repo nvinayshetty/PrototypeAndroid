@@ -14,5 +14,4 @@ import dagger.Component;
 @Component(modules = {AndroidModule.class,AppModule.class})
 public interface AppComponent {
     ContactListSubComponent plus(ContactListModule contactListModule);
-
 }

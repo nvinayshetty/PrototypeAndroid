@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">PrototypeAndroid</string>
     <string name="contact_icon">Contact Icon</string>
+    <string name="un_authorized_message">You are un authorized to access this content, please login again!</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="oops_something_went_wrong">Oops! something went wrong</string>
+    <string name="server_error">We experiencing downtime! please try again later</string>
+    <string name="connectivity_error">We are facing some technical issues! please try again later!</string>
+    <string name="please_check_your_internet_connection">Please  check your internet connection</string>
 </resources>

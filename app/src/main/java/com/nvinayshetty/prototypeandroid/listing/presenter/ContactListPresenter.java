@@ -1,46 +1,56 @@
 package com.nvinayshetty.prototypeandroid.listing.presenter;
 
+import com.nvinayshetty.prototypeandroid.error.ErrorParser;
+import com.nvinayshetty.prototypeandroid.error.NetworkErrorType;
+import com.nvinayshetty.prototypeandroid.error.NetworkError;
 import com.nvinayshetty.prototypeandroid.listing.model.Contact;
-import com.nvinayshetty.prototypeandroid.listing.model.ContactListService;
+import com.nvinayshetty.prototypeandroid.listing.model.NetworkCallBack;
 import com.nvinayshetty.prototypeandroid.listing.view.ContactsListView;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by vinayaprasadn on 18/4/17.
  */
 
 public class ContactListPresenter {
-private ContactsListView contactsListView;
-private ContactListService contactListService;
+    private ContactsListView contactsListView;
+    private ContactListNetworkService contactListNetworkService;
 
-    public ContactListPresenter(ContactsListView contactsListView, ContactListService contactListService) {
+    public ContactListPresenter(ContactsListView contactsListView,  ContactListNetworkService contactListNetworkService) {
         this.contactsListView = contactsListView;
-        this.contactListService = contactListService;
+        this.contactListNetworkService = contactListNetworkService;
     }
 
     public void getContactsList(){
         contactsListView.showProgress();
-        contactListService.getContacts().enqueue(new Callback<List<Contact>>() {
+        contactListNetworkService.getContactsList(new NetworkCallBack<List<Contact>>() {
+
             @Override
-            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+            public void onSuccess(List<Contact> response) {
+                contactsListView.showContacts(response);
                 contactsListView.hideProgress();
-                if(response.isSuccessful()) {
-                    final List<Contact> contactList = response.body();
-                    contactsListView.showContacts(contactList);
-                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                final NetworkErrorType errorType = ErrorParser.getErrorType(t);
+                if(errorType==NetworkErrorType.NO_INTERNET)
+                    contactsListView.onNoNetwork();
+                else
+                    contactsListView.displayNetworkError(errorType);
+                contactsListView.hideProgress();
 
             }
 
             @Override
-            public void onFailure(Call<List<Contact>> call, Throwable t) {
+            public void onErrorResponse(NetworkError networkError) {
+                contactsListView.displayNetworkError(networkError);
                 contactsListView.hideProgress();
-
             }
+
         });
     }
+
+
 }

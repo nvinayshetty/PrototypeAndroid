@@ -1,6 +1,7 @@
 package com.nvinayshetty.prototypeandroid.listing.di;
 
 import com.nvinayshetty.prototypeandroid.listing.model.ContactListService;
+import com.nvinayshetty.prototypeandroid.listing.presenter.ContactListNetworkService;
 import com.nvinayshetty.prototypeandroid.listing.presenter.ContactListPresenter;
 import com.nvinayshetty.prototypeandroid.listing.view.ContactsListView;
 
@@ -30,7 +31,11 @@ public class ContactListModule {
     }
 
     @Provides
-    public static ContactListPresenter provideContactListPresenter(ContactsListView contactsListView,ContactListService contactListService){
+    public static ContactListNetworkService provideContactListNetworkService(ContactListService contactListService){
+        return new ContactListNetworkService(contactListService);
+    }
+    @Provides
+    public static ContactListPresenter provideContactListPresenter(ContactsListView contactsListView,ContactListNetworkService contactListService){
         return new ContactListPresenter(contactsListView,contactListService);
     }
 }

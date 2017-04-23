@@ -1,5 +1,6 @@
 package com.nvinayshetty.prototypeandroid.listing.view;
 
+import com.nvinayshetty.prototypeandroid.error.NetworkError;
 import com.nvinayshetty.prototypeandroid.listing.model.Contact;
 
 import java.util.List;
@@ -12,5 +13,6 @@ public interface ContactsListView {
     void showProgress();
     void showContacts(List<Contact> contacts);
     void hideProgress();
-    void displayNotification(String message);
+    void displayNetworkError(NetworkError message);
+    void onNoNetwork();
 }
