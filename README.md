@@ -1,5 +1,7 @@
 # PrototypeAndroid
-A sample project which demostrates simple ways to prototype android apps without backend api's
+A sample project which demostrates simple ways to prototype android apps without backend api's  
+
+[Medium post related to this repo](https://medium.com/@nvinayshetty/https-medium-com-nvinayshetty-prototyping-android-apps-without-server-apis-e0483a4d3547)
 ## Using json server
 Provides quick explanation on using Json-server for prototyping android,and also addresses some gotchas.  
 
