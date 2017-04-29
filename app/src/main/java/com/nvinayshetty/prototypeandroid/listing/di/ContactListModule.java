@@ -5,11 +5,13 @@ import android.content.Context;
 import com.nvinayshetty.prototypeandroid.listing.model.ContactListService;
 import com.nvinayshetty.prototypeandroid.listing.presenter.ContactListNetworkModel;
 import com.nvinayshetty.prototypeandroid.listing.presenter.ContactListPresenter;
+import com.nvinayshetty.prototypeandroid.listing.view.ContactListActivity;
 import com.nvinayshetty.prototypeandroid.listing.view.ContactsListView;
 import com.nvinayshetty.prototypeandroid.mock.BehaviorDelegate;
 import com.nvinayshetty.prototypeandroid.mock.MockRetrofit;
 import com.nvinayshetty.prototypeandroid.prototype.listing.MockContactService;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -17,17 +19,10 @@ import dagger.Provides;
  * Created by vinayaprasadn on 19/4/17.
  */
 @Module
-public class ContactListModule {
-    private ContactsListView contactsListView;
+abstract class ContactListModule {
 
-    public ContactListModule(ContactsListView contactsListView) {
-        this.contactsListView = contactsListView;
-    }
-
-    @Provides
-    public ContactsListView provideContactListView(){
-        return contactsListView;
-    }
+    @Binds
+    abstract ContactsListView bindMainView(ContactListActivity mainActivity);
 
     @Provides
     public static ContactListService provideContactListService(MockRetrofit retrofit, Context context){

@@ -58,11 +58,12 @@ public class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+
     @Singleton
     @Provides
     public MockRetrofit provideMockRetrofit(Retrofit retrofit){
         final NetworkBehavior behavior = NetworkBehavior.create();
-        behavior.setErrorPercent(50);
+        behavior.setErrorPercent(0);
         behavior.setDelay(4, TimeUnit.SECONDS);
         behavior.setVariancePercent(10);
         final ExecutorService executor = Executors.newSingleThreadExecutor();

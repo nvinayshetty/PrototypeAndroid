@@ -26,7 +26,7 @@ public class PrototypingInterceptor implements Interceptor {
 
 
     public String readFromFile(String fileName) throws IOException {
-        InputStream inputStream = context.getResources().getAssets().open(fileName, Context.MODE_WORLD_READABLE);
+        InputStream inputStream = context.getResources().getAssets().open(fileName);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder jsonString = new StringBuilder();
         String line;
@@ -39,18 +39,17 @@ public class PrototypingInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         final String url = chain.request().url().toString();
-        switch (url)
-        {
-            case "http://10.42.0.1:3000/contacts":{
+        switch (url) {
+            case "http://10.42.0.1:3000/contacts": {
                 final ResponseBody responseBody = ResponseBody
-                                                    .create(MediaType.parse("aplication/json"), readFromFile("contacts_response.json"));
+                        .create(MediaType.parse("application/json"), readFromFile("contacts_response.json"));
                 final Response response = new Response
-                                            .Builder()
-                                            .body(responseBody)
-                                            .request(chain.request()).message("OK")
-                                            .protocol(Protocol.HTTP_1_1)
-                                            .code(200)
-                                            .build();
+                        .Builder()
+                        .body(responseBody)
+                        .request(chain.request()).message("OK")
+                        .protocol(Protocol.HTTP_1_1)
+                        .code(200)
+                        .build();
                 return response;
             }
         }

@@ -17,8 +17,11 @@ public class AndroidModule {
         this.application = application;
     }
 
+
+
     @Provides
-    Context provideContext() {
+    Context provideApplicationContext() {
         return application;
     }
+
 }

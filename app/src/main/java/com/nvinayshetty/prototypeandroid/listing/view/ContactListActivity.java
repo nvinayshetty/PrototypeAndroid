@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.nvinayshetty.prototypeandroid.R;
-import com.nvinayshetty.prototypeandroid.common.App;
 import com.nvinayshetty.prototypeandroid.error.NetworkError;
-import com.nvinayshetty.prototypeandroid.listing.di.ContactListModule;
 import com.nvinayshetty.prototypeandroid.listing.model.Contact;
 import com.nvinayshetty.prototypeandroid.listing.presenter.ContactListPresenter;
 
@@ -22,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
 
 public class ContactListActivity extends AppCompatActivity implements ContactsListView {
     @Inject
@@ -38,11 +37,10 @@ public class ContactListActivity extends AppCompatActivity implements ContactsLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidInjection.inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        ((App) getApplication()).getAppComponent()
-                .plus(new ContactListModule(this))
-                .inject(this);
+
         contactListAdapter = new ContactListAdapter();
         contactsRecyclerView.setAdapter(contactListAdapter);
         contactsRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -73,8 +71,6 @@ public class ContactListActivity extends AppCompatActivity implements ContactsLi
     @Override
     public void onNoNetwork() {
        Snackbar.make(rootLayout,R.string.please_check_your_internet_connection, Snackbar.LENGTH_LONG).show();
-
-
     }
 
 
